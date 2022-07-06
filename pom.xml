@@ -15,6 +15,7 @@
         <module>small-spring-step-04</module>
         <module>small-spring-step-05</module>
         <module>small-spring-step-06</module>
+        <module>small-spring-step-07</module>
     </modules>
 
     <properties>
@@ -38,11 +39,21 @@
 <!--            <artifactId>spring-context</artifactId>-->
 <!--            <version>4.3.7.RELEASE</version>-->
 <!--        </dependency>-->
-
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.3.0</version>
+        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>4.1.14</version>
+            <version>5.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
