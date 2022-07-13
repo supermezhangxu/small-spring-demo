@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	         http://www.springframework.org/schema/beans/spring-beans.xsd
+		 http://www.springframework.org/schema/context">
+
+    <context:component-scan base-package="cn.bugstack.springframework.test"/>
+
+    <bean class="cn.bugstack.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+    <bean id="methodInterceptor" class="cn.bugstack.springframework.aop.framework.adapter.MethodBeforeAdviceInterceptor">
+        <property name="advice" ref="beforeAdvice"/>
+    </bean>
+
+    <bean id="pointcutAdvisor" class="cn.bugstack.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+        <property name="expression" value="execution(* cn.bugstack.springframework.test.IUserService.*(..))"/>
+        <property name="advice" ref="myInterceptor"/>
+    </bean>
+
+    <bean id="myInterceptor" class="cn.bugstack.springframework.test.UserServiceInterceptor"></bean>
+
+    <bean id="beforeAdvice" class="cn.bugstack.springframework.test.UserServiceBeforeAdvice"/>
+
+    <bean class="cn.bugstack.springframework.beans.factory.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:token.properties"/>
+    </bean>
+
+    <bean class="cn.bugstack.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
+
+
+</beans>
